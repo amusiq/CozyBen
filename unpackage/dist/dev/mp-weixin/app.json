@@ -1,13 +1,41 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/diary/diary",
+    "pages/about/about"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
+    "navigationBarTitleText": "CozyBen",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#A1A1A1",
+    "selectedColor": "#131211",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/tabBar/home.png",
+        "selectedIconPath": "static/images/tabBar/home-active.png",
+        "text": "CozyBen"
+      },
+      {
+        "pagePath": "pages/diary/diary",
+        "iconPath": "static/images/tabBar/diary.png",
+        "selectedIconPath": "static/images/tabBar/diary-active.png",
+        "text": "Diary"
+      },
+      {
+        "pagePath": "pages/about/about",
+        "iconPath": "static/images/tabBar/about.png",
+        "selectedIconPath": "static/images/tabBar/about-active.png",
+        "text": "About"
+      }
+    ]
   },
   "permission": {},
   "usingComponents": {}
