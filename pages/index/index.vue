@@ -1,6 +1,7 @@
 <template>
 	<view class="home-container">
 		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgList" :shareMsg="shareMsg" :key="shareMsgIdx"/>
+		<image class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" />
 	</view>
 </template>
 
@@ -31,14 +32,26 @@
 
 		},
 		methods: {
-
+			goAdd(){
+				uni.navigateTo({
+					url:'../editing/editing'
+				})
+			}
 		}
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.home-container{
+		position: relative;
 		min-height: 100vh;
 		background: #F2F2F2;
+		.add-btn{
+			position: fixed;
+			right:0;
+			bottom: 40rpx;
+			width: 140rpx;
+			height: 140rpx;
+		}
 	}
 </style>

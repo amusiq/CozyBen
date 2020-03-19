@@ -8525,7 +8525,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "CozyBen" }, "pages/diary/diary": { "navigationBarTitleText": "Diary" }, "pages/about/about": { "navigationBarTitleText": "About" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "CozyBen", "navigationBarBackgroundColor": "#ffffff", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "CozyBen", "usingComponents": { "share-message": "/components/share-message" }, "usingAutoImportComponents": {} }, "pages/diary/diary": { "navigationBarTitleText": "Diary", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/about/about": { "navigationBarTitleText": "About", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/editing/editing": { "navigationBarTitleText": "Editing", "usingComponents": {}, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "CozyBen", "navigationBarBackgroundColor": "#ffffff", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 /* 8 */

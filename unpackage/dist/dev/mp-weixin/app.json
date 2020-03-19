@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/diary/diary",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/editing/editing"
   ],
   "subPackages": [],
   "window": {
@@ -38,6 +39,5 @@
     ]
   },
   "permission": {},
-  "usingComponents": {},
-  "sitemapLocation": "sitemap3.json"
+  "usingComponents": {}
 }
