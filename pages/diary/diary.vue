@@ -137,6 +137,7 @@
 				width:160rpx;
 				height:140rpx;
 				border-radius: 4rpx;
+				margin-left: 30rpx;
 			}
 			.diary-icon{
 				width:26rpx;
