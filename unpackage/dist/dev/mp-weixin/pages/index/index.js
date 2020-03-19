@@ -142,20 +142,33 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-var _default =
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var shareMessage = function shareMessage() {return __webpack_require__.e(/*! import() | components/share-message */ "components/share-message").then(__webpack_require__.bind(null, /*! @/components/share-message */ 35));};var _default =
+
+
+
+
+
+
+
 {
+  components: {
+    'share-message': shareMessage },
+
   data: function data() {
     return {
-      title: '雷猴！I am blue!' };
+      shareMsgList: [{
+        id: 1,
+        datetime: '2020/3/8',
+        images: ['/static/blue.jpg'],
+        title: 'it is title',
+        content: 'it is content' },
+      {
+        id: 2,
+        datetime: '2020/3/7',
+        images: ['/static/blue.jpg'],
+        title: 'it is title2',
+        content: 'it is content2' }] };
+
 
   },
   onLoad: function onLoad() {
