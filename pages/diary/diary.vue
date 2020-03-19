@@ -21,7 +21,7 @@
 						</view>
 					</view>
 				</view>
-				<image class="diary-img" src='../../static/blue.jpg'/>
+				<image class="diary-img" src='../../static/blue.jpg' mode="aspectFill"/>
 			</view>
 		</view>
 	</view>
