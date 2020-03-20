@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "Editing",
+  "usingComponents": {
+    "image-upload": "/components/image-upload"
+  }
+}
