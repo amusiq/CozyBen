@@ -7611,9 +7611,9 @@ module.exports = g;
 
 /***/ }),
 /* 4 */
-/*!***********************************************!*\
-  !*** E:/develop/小程序/cozyben-weapp/pages.json ***!
-  \***********************************************/
+/*!****************************************!*\
+  !*** F:/work/cozyben-weapp/pages.json ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8518,9 +8518,9 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 
 /***/ }),
 /* 7 */
-/*!****************************************************************!*\
-  !*** E:/develop/小程序/cozyben-weapp/pages.json?{"type":"style"} ***!
-  \****************************************************************/
+/*!*********************************************************!*\
+  !*** F:/work/cozyben-weapp/pages.json?{"type":"style"} ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8529,9 +8529,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 /***/ }),
 /* 8 */
-/*!***************************************************************!*\
-  !*** E:/develop/小程序/cozyben-weapp/pages.json?{"type":"stat"} ***!
-  \***************************************************************/
+/*!********************************************************!*\
+  !*** F:/work/cozyben-weapp/pages.json?{"type":"stat"} ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8671,9 +8671,9 @@ function normalizeComponent (
 /* 19 */,
 /* 20 */,
 /* 21 */
-/*!********************************************************************!*\
-  !*** E:/develop/小程序/cozyben-weapp/node_modules/dayjs/dayjs.min.js ***!
-  \********************************************************************/
+/*!*************************************************************!*\
+  !*** F:/work/cozyben-weapp/node_modules/dayjs/dayjs.min.js ***!
+  \*************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
