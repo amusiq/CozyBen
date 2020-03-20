@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var shareMessage = function shareMessage() {return __webpack_require__.e(/*! import() | components/share-message */ "components/share-message").then(__webpack_require__.bind(null, /*! @/components/share-message */ 39));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 
 
 
@@ -151,31 +151,41 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 68));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var shareMessage = function shareMessage() {return __webpack_require__.e(/*! import() | components/share-message */ "components/share-message").then(__webpack_require__.bind(null, /*! @/components/share-message */ 47));};var _default =
 {
   components: {
     'share-message': shareMessage },
 
+
   data: function data() {
     return {
-      shareMsgList: [{
-        id: 1,
-        datetime: '2020/3/8',
-        images: ['/static/blue.jpg'],
-        title: 'it is title',
-        content: 'it is content' },
-      {
-        id: 2,
-        datetime: '2020/3/7',
-        images: ['/static/blue.jpg'],
-        title: 'it is title2',
-        content: 'it is content2' }] };
-
+      shareMsgList: [] };
 
   },
+
   onLoad: function onLoad() {
-
+    this.getShareMsg();
   },
+
   methods: {
+    // 获取分享列表信息
+    getShareMsg: function getShareMsg() {var _this = this;
+      var db = wx.cloud.database();
+      db.collection('shareMessages').get({
+        success: function success(res) {
+          _this.shareMsgList = _this.formatShareMsg(res.data);
+        } });
+
+    },
+    // 处理分享列表信息
+    formatShareMsg: function formatShareMsg(shareMsgList) {
+      return shareMsgList.map(function (item) {
+        return _objectSpread({},
+        item, {
+          datetime: (0, _dayjs.default)(item.dateTime).format('YYYY/M/D') });
+
+      });
+    },
     goAdd: function goAdd() {
       uni.navigateTo({
         url: '../editing/editing' });

@@ -6,32 +6,42 @@
 </template>
 
 <script>
-	import shareMessage from '@/components/share-message'
+	import shareMessage from '@/components/share-message';
+	import dayjs from 'dayjs';
 	export default {
 		components:{
 			'share-message':shareMessage
 		},
+		
 		data() {
 			return {
-				shareMsgList: [{
-					id:1,
-					datetime:'2020/3/8',
-					images:['/static/blue.jpg'],
-					title:'it is title',	
-					content:'it is content'
-				},{
-					id:2,
-					datetime:'2020/3/7',
-					images:['/static/blue.jpg'],
-					title:'it is title2',
-					content:'it is content2'
-				}]
+				shareMsgList: []
 			}
 		},
+		
 		onLoad() {
-
+			this.getShareMsg();
 		},
+		
 		methods: {
+			// 获取分享列表信息
+			getShareMsg(){
+				const db = wx.cloud.database();
+				db.collection('shareMessages').get({
+				  success:(res)=> {
+					this.shareMsgList = this.formatShareMsg(res.data);
+				  }
+				});
+			},
+			// 处理分享列表信息
+			formatShareMsg(shareMsgList){
+				return shareMsgList.map(item=>{
+					return {
+						...item,
+						datetime:dayjs(item.dateTime).format('YYYY/M/D')
+					}
+				});
+			},
 			goAdd(){
 				uni.navigateTo({
 					url:'../editing/editing'
