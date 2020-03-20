@@ -1,0 +1,1 @@
+<view class="editing-container bb-container"><view class="bb-content"><image-upload vue-id="e8537064-1" bind:__l="__l"></image-upload><view class="title-input-box"><input type="text" placeholder="写下标题获得更多赞哦~"/></view><view class="content-textarea-box"><textarea value="" placeholder="写下此时此刻的想法..."></textarea></view></view><view class="send-btn">发送</view></view>
