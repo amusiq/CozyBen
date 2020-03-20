@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "CozyBen",
-  "usingComponents": {}
+  "usingComponents": {
+    "share-message": "/components/share-message"
+  }
 }

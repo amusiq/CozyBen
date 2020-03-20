@@ -18,6 +18,12 @@
 				"navigationBarTitleText": "About"
 			}
         }
+        ,{
+            "path" : "pages/editing/editing",
+            "style" : {
+				"navigationBarTitleText": "Editing"
+			}
+        }
     ],
 	"tabBar": {
 	    "color": "#A1A1A1",
@@ -28,7 +34,7 @@
 	        "pagePath": "pages/index/index",
 	        "iconPath": "static/images/tabBar/home.png",
 	        "selectedIconPath": "static/images/tabBar/home-active.png",
-	        "text": "CozyBen"
+	        "text": "Share"
 	    }, {
 	        "pagePath": "pages/diary/diary",
 	        "iconPath": "static/images/tabBar/diary.png",
@@ -44,7 +50,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "CozyBen",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#ffffff",
 		"backgroundColor": "#F8F8F8"
 	}
 }

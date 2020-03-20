@@ -2,13 +2,14 @@
   "pages": [
     "pages/index/index",
     "pages/diary/diary",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/editing/editing"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarTitleText": "CozyBen",
-    "navigationBarBackgroundColor": "#F8F8F8",
+    "navigationBarBackgroundColor": "#ffffff",
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
@@ -21,7 +22,7 @@
         "pagePath": "pages/index/index",
         "iconPath": "static/images/tabBar/home.png",
         "selectedIconPath": "static/images/tabBar/home-active.png",
-        "text": "CozyBen"
+        "text": "Share"
       },
       {
         "pagePath": "pages/diary/diary",
