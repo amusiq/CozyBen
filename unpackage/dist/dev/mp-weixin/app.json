@@ -32,5 +32,8 @@
     ]
   },
   "permission": {},
+  "navigateToMiniProgramAppIdList": [
+    "wx255d1cc18d96aadf"
+  ],
   "usingComponents": {}
 }

@@ -42,6 +42,5 @@
 		"navigationBarTitleText": "CozyBen",
 		"navigationBarBackgroundColor": "#ffffff",
 		"backgroundColor": "#F8F8F8"
-	},
-	"navigateToMiniProgramAppIdList": ["wx255d1cc18d96aadf"]
+	}
 }
