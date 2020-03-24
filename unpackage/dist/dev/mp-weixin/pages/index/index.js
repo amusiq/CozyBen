@@ -174,6 +174,18 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 28));functi
     this.getShareMsg();
   },
 
+  // 分享
+  onShareAppMessage: function onShareAppMessage(res) {
+    var data = {
+      title: '#"COZYBEN"#',
+      path: '/pages/index/index' };
+
+    if (res.from === 'button') {// 来自页面内分享按钮
+      data.imageUrl = res.target.dataset.data.images[0];
+    }
+    return data;
+  },
+
   methods: {
     // 获取分享列表信息
     getShareMsg: function getShareMsg(fresh) {var _this = this;

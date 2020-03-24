@@ -83,4 +83,19 @@
     height: 40rpx;
     margin-left: 40rpx;
 }
+.share-msg-container .share-btn {
+    display: inline-block;
+    border: 0;
+    padding: 0;
+    width: 40rpx;
+    height: 40rpx;
+    margin-left: 40rpx;
+    line-height: 0;
+    border-radius: 0;
+    background-color: transparent;
+}
+.share-msg-container .share-btn__icon {
+      width: 40rpx;
+      height: 40rpx;
+}
 

@@ -16,15 +16,7 @@ class Login {
 		    return Promise.reject(new Error(res.result.msg))
 		  }
 		  uni.setStorageSync('token', res.result.token)
-		  uni.showModal({
-		    content: '登录成功，token已存储',
-		    showCancel: false,
-		    success() {
-		      uni.navigateTo({
-		        url: '/pages/wxpay/wxpay'
-		      })
-		    }
-		  })
+		  console.log('登录成功')
 		}).catch((err) => {
 		  console.log(err);
 		  uni.hideLoading()

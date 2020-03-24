@@ -8568,15 +8568,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
           return Promise.reject(new Error(res.result.msg));
         }
         uni.setStorageSync('token', res.result.token);
-        uni.showModal({
-          content: '登录成功，token已存储',
-          showCancel: false,
-          success: function success() {
-            uni.navigateTo({
-              url: '/pages/wxpay/wxpay' });
-
-          } });
-
+        console.log('登录成功');
       }).catch(function (err) {
         console.log(err);
         uni.hideLoading();

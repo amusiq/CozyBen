@@ -14,7 +14,10 @@
 				<text class="share-msg-title">{{shareMsg.title}}</text>
 				<view>
 					<image class="share-msg-opt" src="../static/images/heart.png" @click="onLike"/>
-					<image class="share-msg-opt" src="../static/images/share.png" @click="onShare"/>
+					<button class="share-btn" open-type="share" :data-data="shareMsg">
+						<image class="share-btn__icon" src="../static/images/share.png" @click="onShare"/>
+					</button>
+					
 				</view>
 			</view>
 			<view class="share-msg-content">
@@ -112,6 +115,21 @@
 		width:40rpx;
 		height:40rpx;
 		margin-left: 40rpx;
+	}
+	.share-btn{
+		display: inline-block;
+		border: 0;
+		padding:0;
+		width:40rpx;
+		height:40rpx;
+		margin-left: 40rpx;
+		line-height: 0;
+		border-radius: 0;
+		background-color: transparent;
+		&__icon{
+			width:40rpx;
+			height:40rpx;
+		}
 	}
 }
 </style>

@@ -39,6 +39,18 @@
 			this.getShareMsg();
 		},
 		
+		// 分享
+		onShareAppMessage(res) {
+			const data = {
+				title: '#"COZYBEN"#',
+				path: '/pages/index/index'
+			}
+			if (res.from === 'button') {// 来自页面内分享按钮
+				data.imageUrl = res.target.dataset.data.images[0];
+			}
+			return data
+		},
+		
 		methods: {
 			// 获取分享列表信息
 			getShareMsg(fresh){
