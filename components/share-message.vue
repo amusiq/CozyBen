@@ -123,6 +123,10 @@
 		line-height: 0;
 		border-radius: 0;
 		background-color: transparent;
+		&::after{
+			content:'';
+			border:0;
+		}
 		&__icon{
 			width:40rpx;
 			height:40rpx;

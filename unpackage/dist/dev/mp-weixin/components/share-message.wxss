@@ -94,6 +94,10 @@
     border-radius: 0;
     background-color: transparent;
 }
+.share-msg-container .share-btn::after {
+      content: '';
+      border: 0;
+}
 .share-msg-container .share-btn__icon {
       width: 40rpx;
       height: 40rpx;
