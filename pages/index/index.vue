@@ -57,7 +57,7 @@
 				uni.showLoading({ title: '全力加载中...' });
 				if (fresh) this.shareMsgData = { hasMore: true, list: [], limit: 5 };
 				const { hasMore, list, limit } = this.shareMsgData;
-				if (!hasMore) return;
+				if (!hasMore) return uni.hideLoading();;
 				uniCloud.callFunction({
 				  name: 'getShareMessage',
 				  data:{

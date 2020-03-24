@@ -54,7 +54,7 @@
 				微信小程序
 			</view>
 			<view>
-				<view class="wxapp-item">
+				<view class="wxapp-item" @click="navToMP">
 					<image class="wxapp-item__headimg" src="../../static/images/distinct.png"/>
 					<text class="wxapp-item__text">卓正医疗</text>
 				</view>
@@ -69,6 +69,15 @@
 			return {
 				
 			};
+		},
+		
+		methods:{
+			navToMP(){
+				uni.navigateToMiniProgram({
+				  appId: 'wx255d1cc18d96aadf',
+				  path: 'pages/index/index'
+				})
+			}
 		}
 	}
 </script>

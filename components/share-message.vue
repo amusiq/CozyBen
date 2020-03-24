@@ -58,9 +58,6 @@
 			},
 			onLike(){
 				console.log('onLike',this.shareMsg)
-			},
-			onShare(){
-				console.log('onShare',this.shareMsg)
 			}
 		}
 		

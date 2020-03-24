@@ -176,9 +176,6 @@ var _default =
     },
     onLike: function onLike() {
       console.log('onLike', this.shareMsg);
-    },
-    onShare: function onShare() {
-      console.log('onShare', this.shareMsg);
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -192,7 +192,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 28));functi
       uni.showLoading({ title: '全力加载中...' });
       if (fresh) this.shareMsgData = { hasMore: true, list: [], limit: 5 };var _this$shareMsgData =
       this.shareMsgData,hasMore = _this$shareMsgData.hasMore,list = _this$shareMsgData.list,limit = _this$shareMsgData.limit;
-      if (!hasMore) return;
+      if (!hasMore) return uni.hideLoading();;
       uniCloud.callFunction({
         name: 'getShareMessage',
         data: {
