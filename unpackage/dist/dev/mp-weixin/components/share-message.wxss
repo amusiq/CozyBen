@@ -49,11 +49,11 @@
       width: 6rpx;
 }
 .share-msg-container .image-swiper {
-    height: 400rpx;
+    height: 750rpx;
 }
 .share-msg-container .share-msg-img {
     width: 100%;
-    height: 400rpx;
+    height: 750rpx;
 }
 .share-msg-container .describe {
     padding: 0 30rpx;

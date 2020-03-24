@@ -4,17 +4,17 @@
 			<text class="datetime">{{shareMsg.createTime}}</text>
 			<image class="more-btn" src="../static/images/more.png" mode="widthFix" />
 		</view>
-		<swiper class="image-swiper">
+		<swiper class="image-swiper" :current="current" :indicator-dots="indicatorDots" @change="onChangeCurrent">
 			<swiper-item v-for="img in shareMsg.images" :key="img">
-				<image class="share-msg-img" :src="img" mode="aspectFill"/>
+				<image class="share-msg-img" :src="img" mode="aspectFill" @click="onPreview"/>
 			</swiper-item>	
 		</swiper>
 		<view class="describe">
 			<view class="describe-top">
 				<text class="share-msg-title">{{shareMsg.title}}</text>
 				<view>
-					<image class="share-msg-opt" src="../static/images/heart.png" />
-					<image class="share-msg-opt" src="../static/images/share.png" />
+					<image class="share-msg-opt" src="../static/images/heart.png" @click="onLike"/>
+					<image class="share-msg-opt" src="../static/images/share.png" @click="onShare"/>
 				</view>
 			</view>
 			<view class="share-msg-content">
@@ -30,11 +30,37 @@
 			shareMsg: Object
 		},
 		
+		computed:{
+			indicatorDots(){
+				return this.shareMsg.images.length > 1;
+			}
+		},
+		
 		data() {
 			return {
-				
+				current: 0
 			};
+		},
+		
+		methods:{
+			onChangeCurrent(e){
+				this.current = e.detail.current;
+			},
+			onPreview(){
+				const { images } = this.shareMsg;
+				uni.previewImage({
+					current: this.current,
+					urls: images
+				});
+			},
+			onLike(){
+				console.log('onLike',this.shareMsg)
+			},
+			onShare(){
+				console.log('onShare',this.shareMsg)
+			}
 		}
+		
 	}
 </script>
 
@@ -57,11 +83,11 @@
 		}
 	}
 	.image-swiper{
-		height:400rpx;
+		height:750rpx;
 	}
 	.share-msg-img{
 		width: 100%;
-		height: 400rpx;
+		height: 750rpx;
 	}
 	.describe{
 		padding: 0 30rpx;

@@ -2,7 +2,7 @@
 	<view class="imageUploadContainer">
 			<view class="imageUploadList">
 				<view class="imageItem" v-bind:key="index" v-for="(path,index) in imageListData">
-					<image :src="path" :class="{'dragging':isDragging(index)}" draggable="true" @tap="previewImage" :data-index="index" @touchstart="start" @touchmove.stop.prevent="move" @touchend="stop" mode="center" />
+					<image :src="path" :class="{'dragging':isDragging(index)}" draggable="true" @tap="previewImage" :data-index="index" @touchstart="start" @touchmove.stop.prevent="move" @touchend="stop" mode="aspectFill" />
 					<view v-if="isShowDel" class="imageDel" @tap="deleteImage" :data-index="index">x</view>
 				</view>
 				<view v-if="isShowAdd" class="imageUpload" @tap="selectImage">+</view>
@@ -132,10 +132,6 @@
 					Promise.all(promiseWorkList).then(res => {
 						console.log(res,'Promise')
 						uni.hideLoading()
-						uni.showModal({
-							content: '图片上传成功',
-							showCancel: false
-						})
 						if(this.isDestroyed){
 							return
 						}
@@ -150,16 +146,16 @@
 						})
 						
 						this.$emit('input', this.imageList)
+					}).catch(err=>{
+						uni.hideLoading()
+						console.log(err);
+						if (err.message !== 'Fail_Cancel') {
+							uni.showModal({
+							  content: `图片上传失败，错误信息为：${err.message}`,
+							  showCancel: false
+							})
+						}
 					});
-				}).catch((err) => {
-					uni.hideLoading()
-					console.log(err);
-					if (err.message !== 'Fail_Cancel') {
-						uni.showModal({
-						  content: `图片上传失败，错误信息为：${err.message}`,
-						  showCancel: false
-						})
-					}
 				})
 			},
 			

@@ -1,6 +1,6 @@
 <template>
 	<view class="home-container">
-		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgList" :shareMsg="shareMsg" :key="shareMsgIdx"/>
+		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgData.list" :shareMsg="shareMsg" :key="shareMsgIdx" @onPreview="onPreview"/>
 		<image class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" />
 	</view>
 </template>
@@ -15,39 +15,55 @@
 		
 		data() {
 			return {
+				shareMsgData:{
+					list:[],
+					hasMore:true,
+					limit:5
+				},
 				shareMsgList: []
 			}
 		},
 		
-		onShow() {
+		onLoad() {
+			this.getShareMsg(true);
+		},
+		
+		// 下拉刷新
+		async onPullDownRefresh() {
+			await this.getShareMsg(true);
+			uni.stopPullDownRefresh();
+		},
+		
+		// 滑动底部加载
+		onReachBottom() {
 			this.getShareMsg();
 		},
 		
 		methods: {
 			// 获取分享列表信息
-			getShareMsg(){
-				uni.showLoading({
-				  title: '处理中...'
-				})
+			getShareMsg(fresh){
+				uni.showLoading({ title: '全力加载中...' });
+				if (fresh) this.shareMsgData = { hasMore: true, list: [], limit: 5 };
+				const { hasMore, list, limit } = this.shareMsgData;
+				if (!hasMore) return;
 				uniCloud.callFunction({
 				  name: 'getShareMessage',
 				  data:{
-					  start: 0,
-					  limit: 5
+					  start: list.length,
+					  limit: limit
 				  }
 				}).then((res) => {
-				  uni.hideLoading()
-				  console.log(res)
-				  this.shareMsgList = this.formatShareMsg(res.result.data);
+				  uni.hideLoading();
+				  this.shareMsgData.hasMore = res.result.hasMore;
+				  this.shareMsgData.list = list.concat(this.formatShareMsg(res.result.data));
 				}).catch((err) => {
-				  uni.hideLoading()
+				  uni.hideLoading();
 				  uni.showModal({
 				    content: `查询失败，错误信息为：${err.message}`,
 				    showCancel: false
-				  })
-				  console.error(err)
-				})
-				
+				  });
+				  console.error(err);
+				});
 			},
 			// 处理分享列表信息
 			formatShareMsg(shareMsgList){
