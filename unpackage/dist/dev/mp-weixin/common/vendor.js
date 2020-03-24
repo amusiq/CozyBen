@@ -8037,11 +8037,18 @@ module.exports = g;
 
 
 /***/ }),
+<<<<<<< HEAD
 
 /***/ 4:
 /*!***********************************************!*\
   !*** E:/develop/小程序/cozyben-weapp/pages.json ***!
   \***********************************************/
+=======
+/* 4 */
+/*!****************************************!*\
+  !*** F:/work/cozyben-weapp/pages.json ***!
+  \****************************************/
+>>>>>>> 1605f46f4ab03cd15ecc0c03feb9e83b16075ff3
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8947,11 +8954,18 @@ main();
 module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.0.0-26420200313001","_inBundle":false,"_integrity":"sha512-7dPuazTiDmUyRcw+WW+UlWGKH0eeCUB+p0P4pJVKEHjpdXnXgvDQCSdJk764NH99TfsUycnuxecP5oHckVa88g==","_location":"/@dcloudio/uni-stat","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@dcloudio/uni-stat@next","name":"@dcloudio/uni-stat","escapedName":"@dcloudio%2funi-stat","scope":"@dcloudio","rawSpec":"next","saveSpec":null,"fetchSpec":"next"},"_requiredBy":["#USER","/","/@dcloudio/vue-cli-plugin-uni"],"_resolved":"https://registry.npmjs.org/@dcloudio/uni-stat/-/uni-stat-2.0.0-26420200313001.tgz","_shasum":"a006e329e033cd412accfa635f8933dbb822a9c3","_spec":"@dcloudio/uni-stat@next","_where":"/Users/guoshengqiang/Documents/dcloud-plugins/release/uniapp-cli","author":"","bugs":{"url":"https://github.com/dcloudio/uni-app/issues"},"bundleDependencies":false,"deprecated":false,"description":"","devDependencies":{"@babel/core":"^7.5.5","@babel/preset-env":"^7.5.5","eslint":"^6.1.0","rollup":"^1.19.3","rollup-plugin-babel":"^4.3.3","rollup-plugin-clear":"^2.0.7","rollup-plugin-commonjs":"^10.0.2","rollup-plugin-copy":"^3.1.0","rollup-plugin-eslint":"^7.0.0","rollup-plugin-json":"^4.0.0","rollup-plugin-node-resolve":"^5.2.0","rollup-plugin-replace":"^2.2.0","rollup-plugin-uglify":"^6.0.2"},"files":["dist","package.json","LICENSE"],"gitHead":"b1fdbafab5dd4673cff64188a5203d0c947e4f50","homepage":"https://github.com/dcloudio/uni-app#readme","license":"Apache-2.0","main":"dist/index.js","name":"@dcloudio/uni-stat","repository":{"type":"git","url":"git+https://github.com/dcloudio/uni-app.git","directory":"packages/uni-stat"},"scripts":{"build":"NODE_ENV=production rollup -c rollup.config.js","dev":"NODE_ENV=development rollup -w -c rollup.config.js"},"version":"2.0.0-26420200313001"};
 
 /***/ }),
+<<<<<<< HEAD
 
 /***/ 63:
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
   \**********************************************************/
+=======
+/* 7 */
+/*!*********************************************************!*\
+  !*** F:/work/cozyben-weapp/pages.json?{"type":"style"} ***!
+  \*********************************************************/
+>>>>>>> 1605f46f4ab03cd15ecc0c03feb9e83b16075ff3
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8959,11 +8973,18 @@ module.exports = __webpack_require__(/*! regenerator-runtime */ 64);
 
 
 /***/ }),
+<<<<<<< HEAD
 
 /***/ 64:
 /*!************************************************************!*\
   !*** ./node_modules/regenerator-runtime/runtime-module.js ***!
   \************************************************************/
+=======
+/* 8 */
+/*!********************************************************!*\
+  !*** F:/work/cozyben-weapp/pages.json?{"type":"stat"} ***!
+  \********************************************************/
+>>>>>>> 1605f46f4ab03cd15ecc0c03feb9e83b16075ff3
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9739,11 +9760,24 @@ if (hadRuntime) {
 
 
 /***/ }),
+<<<<<<< HEAD
 
 /***/ 7:
 /*!****************************************************************!*\
   !*** E:/develop/小程序/cozyben-weapp/pages.json?{"type":"style"} ***!
   \****************************************************************/
+=======
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */
+/*!*************************************************************!*\
+  !*** F:/work/cozyben-weapp/node_modules/dayjs/dayjs.min.js ***!
+  \*************************************************************/
+>>>>>>> 1605f46f4ab03cd15ecc0c03feb9e83b16075ff3
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
