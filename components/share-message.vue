@@ -1,12 +1,12 @@
 <template>
 	<view class="share-msg-container">
 		<view class="share-msg-datetime">
-			<text class="datetime">{{shareMsg.datetime}}</text>
+			<text class="datetime">{{shareMsg.createTime}}</text>
 			<image class="more-btn" src="../static/images/more.png" mode="widthFix" />
 		</view>
 		<swiper class="image-swiper">
 			<swiper-item v-for="img in shareMsg.images" :key="img">
-				<image class="share-msg-img" :src="img" />
+				<image class="share-msg-img" :src="img" mode="aspectFill"/>
 			</swiper-item>	
 		</swiper>
 		<view class="describe">

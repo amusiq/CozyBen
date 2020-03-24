@@ -19,26 +19,42 @@
 			}
 		},
 		
-		onLoad() {
+		onShow() {
 			this.getShareMsg();
 		},
 		
 		methods: {
 			// 获取分享列表信息
 			getShareMsg(){
-				const db = wx.cloud.database();
-				db.collection('shareMessages').get({
-				  success:(res)=> {
-					this.shareMsgList = this.formatShareMsg(res.data);
+				uni.showLoading({
+				  title: '处理中...'
+				})
+				uniCloud.callFunction({
+				  name: 'getShareMessage',
+				  data:{
+					  start: 0,
+					  limit: 5
 				  }
-				});
+				}).then((res) => {
+				  uni.hideLoading()
+				  console.log(res)
+				  this.shareMsgList = this.formatShareMsg(res.result.data);
+				}).catch((err) => {
+				  uni.hideLoading()
+				  uni.showModal({
+				    content: `查询失败，错误信息为：${err.message}`,
+				    showCancel: false
+				  })
+				  console.error(err)
+				})
+				
 			},
 			// 处理分享列表信息
 			formatShareMsg(shareMsgList){
 				return shareMsgList.map(item=>{
 					return {
 						...item,
-						datetime:dayjs(item.dateTime).format('YYYY/M/D')
+						createTime:dayjs(item.createTime).format('YYYY/M/D')
 					}
 				});
 			},

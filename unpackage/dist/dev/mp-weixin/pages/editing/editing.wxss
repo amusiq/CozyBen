@@ -30,7 +30,7 @@
   border-bottom: 1px solid #F2F2F2;
 }
 .editing-container .content-textarea-box {
-  padding: 30rpx;
+  padding: 20rpx;
 }
 .editing-container .send-btn {
   width: 100%;
@@ -39,5 +39,12 @@
   color: #fff;
   background: #525252;
   text-align: center;
+}
+.editing-container .title-input, .editing-container .content-textarea {
+  font-size: 30rpx;
+}
+.editing-container .input-placeholder, .editing-container .textarea-placeholder {
+  color: #A9A9A9;
+  font-size: 30rpx;
 }
 

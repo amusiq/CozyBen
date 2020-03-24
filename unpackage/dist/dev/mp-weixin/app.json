@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/diary/diary",
     "pages/about/about",
     "pages/editing/editing"
   ],
@@ -23,12 +22,6 @@
         "iconPath": "static/images/tabBar/home.png",
         "selectedIconPath": "static/images/tabBar/home-active.png",
         "text": "Share"
-      },
-      {
-        "pagePath": "pages/diary/diary",
-        "iconPath": "static/images/tabBar/diary.png",
-        "selectedIconPath": "static/images/tabBar/diary-active.png",
-        "text": "Diary"
       },
       {
         "pagePath": "pages/about/about",
