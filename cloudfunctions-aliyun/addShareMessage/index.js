@@ -1,8 +1,19 @@
 'use strict';
-const db = uniCloud.database()
-exports.main = async (event, context) => {
-  //event为客户端上传的参数
-  const collection = db.collection('share-message')
-  const res = await collection.add(event)
-  return res
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+const db = uniCloud.database();
+async function addShareMessage(event) {
+	const collection = db.collection('share-message');
+	const res = await collection.add(event);
+	return res
+}
+
+var main = addShareMessage;
+
+var addShareMessage_1 = {
+	main: main
 };
+
+exports.default = addShareMessage_1;
+exports.main = main;

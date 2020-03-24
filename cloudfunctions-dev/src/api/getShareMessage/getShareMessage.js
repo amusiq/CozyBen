@@ -1,8 +1,4 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-const db = uniCloud.database();
+const db = uniCloud.database()
 async function getShareMessage(event) {
 	const { start, limit } = event;
 	const collection = db.collection('share-message');
@@ -14,11 +10,4 @@ async function getShareMessage(event) {
 	return res;
 }
 
-var main = getShareMessage;
-
-var getShareMessage_1 = {
-	main: main
-};
-
-exports.default = getShareMessage_1;
-exports.main = main;
+exports.main = getShareMessage

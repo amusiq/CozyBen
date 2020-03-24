@@ -1,11 +1,8 @@
 <script>
-	
+	import loginUtil from '@/utils/login';
 	export default {
 		onLaunch: function() {
-			wx.cloud.init({
-			  env: 'cozy-ben-zwb910',
-			  traceUser:'true'
-			})
+			loginUtil.login();
 		},
 		onShow: function() {
 			console.log('App Show')
