@@ -8,18 +8,14 @@ async function getShareMessage(event) {
 	const hasMore = (start+1+limit) < countResult.total;
 	let res = await collection.orderBy('createTime','desc').skip(start).limit(limit).get();
 	res.hasMore = hasMore;
-	const formatData = res.data.map(item=>{
-		const likeInfo = likeCollection.where({ id: item._id }).get();
+	for(let i = 0;i<res.data.length;i++){
 		let isLike = false;
-		if(likeInfo.data.length !==0 && openid){
-			isLike = likeInfo.likes.includes(openid)
+		const likeInfo = await likeCollection.where({ id: res.data[i]._id }).get();
+		if(likeInfo.data.length !== 0 && openid){
+			isLike = likeInfo.data[0].likes.includes(openid)
 		}
-		return {
-			...item,
-			isLike
-		}
-	});
-	res.data = formatData;
+		res.data[i].isLike = isLike
+	}
 	return res;
 }
 

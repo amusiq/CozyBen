@@ -25,15 +25,15 @@ async function likeShareMessage(event) {
 		const likesInDB = shareLikesInDB.data[0];
 		const isHasOpenid = likesInDB.likes.some(item => item === openid);
 		if(isHasOpenid && !isLike){
+			const idx = likesInDB.likes.findIndex(item => item === openid);
+			likesInDB.likes.splice(idx, 1);
 			const likeRes = await collection.where({ id: _id }).update({
-				data:{
-					likes: likesInDB.likes.splice(likesInDB.likes.findIndex(item => item === openid), 1)
-				}
+				likes: likesInDB.likes
 			});
 			if(likeRes.id || likeRes.updated === 1){
 				return {
 					status: 0,
-					msg: '取消点赞成功'
+					msg: '取消点赞成功',
 				}
 			} else {
 				return {
@@ -42,10 +42,9 @@ async function likeShareMessage(event) {
 				}
 			}
 		}else if(!isHasOpenid && isLike){
+			likesInDB.likes.push(openid)
 			const likeRes = await collection.where({ id: _id }).update({
-				data:{
-					likes: likesInDB.likes.push(openid)
-				}
+				likes: likesInDB.likes
 			});
 			if(likeRes.id || likeRes.updated === 1){
 				return {
