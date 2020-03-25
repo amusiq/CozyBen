@@ -8525,7 +8525,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "CozyBen", "enablePullDownRefresh": true, "usingComponents": { "share-message": "/components/share-message" }, "usingAutoImportComponents": {} }, "pages/about/about": { "navigationBarTitleText": "About", "usingComponents": {}, "usingAutoImportComponents": {} }, "pages/editing/editing": { "navigationBarTitleText": "Editing", "usingComponents": { "image-upload": "/components/image-upload" }, "usingAutoImportComponents": {} } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "CozyBen", "navigationBarBackgroundColor": "#ffffff", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationBarTitleText": "CozyBen", "enablePullDownRefresh": true }, "pages/about/about": { "navigationBarTitleText": "About" }, "pages/editing/editing": { "navigationBarTitleText": "Editing" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "CozyBen", "navigationBarBackgroundColor": "#ffffff", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 /* 8 */

@@ -212,6 +212,11 @@ var _default =
         appId: 'wx255d1cc18d96aadf',
         path: 'pages/index/index' });
 
+    },
+    onContact: function onContact() {
+      uni.previewImage({
+        urls: ["https://vkceyugu.cdn.bspapp.com/VKCEYUGU-cozyben/b24a5250-6e47-11ea-b997-9918a5dda011.jpg"] });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

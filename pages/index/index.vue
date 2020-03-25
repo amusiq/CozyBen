@@ -1,6 +1,6 @@
 <template>
 	<view class="home-container">
-		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgData.list" :shareMsg="shareMsg" :key="shareMsgIdx" @onPreview="onPreview"/>
+		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgData.list" :shareMsg="shareMsg" :key="shareMsgIdx" @onLike="onLike" />
 		<image class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" />
 	</view>
 </template>
@@ -53,17 +53,27 @@
 		
 		methods: {
 			// 获取分享列表信息
-			getShareMsg(fresh){
+			async getShareMsg(fresh){
 				uni.showLoading({ title: '全力加载中...' });
 				if (fresh) this.shareMsgData = { hasMore: true, list: [], limit: 5 };
 				const { hasMore, list, limit } = this.shareMsgData;
-				if (!hasMore) return uni.hideLoading();;
+				if (!hasMore) return uni.hideLoading();
+				const data = {
+					start: list.length,
+					limit: limit
+				};
+				const validateRes = await uniCloud.callFunction({
+				  name: 'validateToken',
+				  data: {
+				    token: uni.getStorageSync('token') // token最好不要每次从storage内取，本示例为了简化演示代码才这么写
+				  }
+				});
+				if(validateRes.result.status === 0){
+					data.openid = validateRes.result.openid;
+				}
 				uniCloud.callFunction({
 				  name: 'getShareMessage',
-				  data:{
-					  start: list.length,
-					  limit: limit
-				  }
+				  data
 				}).then((res) => {
 				  uni.hideLoading();
 				  this.shareMsgData.hasMore = res.result.hasMore;
@@ -90,6 +100,12 @@
 				uni.navigateTo({
 					url:'../editing/editing'
 				})
+			},
+			onLike(data){
+				const index = this.shareMsgData.list.findIndex(item => item._id === data._id);
+				if(index !== -1){
+					this.shareMsgData.list[index].isLike = data.isLike;
+				}
 			}
 		}
 	}

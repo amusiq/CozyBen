@@ -13,11 +13,10 @@
 			<view class="describe-top">
 				<text class="share-msg-title">{{shareMsg.title}}</text>
 				<view>
-					<image class="share-msg-opt" src="../static/images/heart.png" @click="onLike"/>
+					<image class="share-msg-opt" :src="shareMsg.isLike ? '../static/images/heart-active.png' : '../static/images/heart.png'" @click="onLike"/>
 					<button class="share-btn" open-type="share" :data-data="shareMsg">
 						<image class="share-btn__icon" src="../static/images/share.png" @click="onShare"/>
 					</button>
-					
 				</view>
 			</view>
 			<view class="share-msg-content">
@@ -56,8 +55,63 @@
 					urls: images
 				});
 			},
-			onLike(){
-				console.log('onLike',this.shareMsg)
+			async onLike(){
+				const validateRes = await uniCloud.callFunction({
+				  name: 'validateToken',
+				  data: {
+				    token: uni.getStorageSync('token') // token最好不要每次从storage内取，本示例为了简化演示代码才这么写
+				  }
+				});
+					console.log(validateRes,'validateRes');
+				if(validateRes.result.status === 0){
+					const { _id, isLike } = this.shareMsg;
+					const res = await uniCloud.callFunction({
+					  	name:'likeShareMessage',
+						data:{
+							_id,
+							openid: validateRes.result.openid,
+							isLike: !isLike
+						}
+					});
+					if(res.result.status === 0){
+						uni.showModal({
+						    content: isLike ? '取消点赞成功' : '点赞成功',
+						    showCancel: false
+						});
+						this.$emit('onLike',{ _id: this.shareMsg._id, isLike: !isLike });
+					}
+					  
+				}else{
+					uni.showModal({
+					    content: '还没登录呢，还没登录呢',
+					    showCancel: false
+					})
+				}
+				console.log(validateRes,'validateRes')
+				// uniCloud.callFunction({
+				//   name: 'validateToken',
+				//   data: {
+				//     token: uni.getStorageSync('token') // token最好不要每次从storage内取，本示例为了简化演示代码才这么写
+				//   }
+				// }).then((res) => {
+				//   console.log(res);
+				//   const { _id, isLike } = this.shareMsg;
+				//   uniCloud.callFunction({
+				//   	name:'likeShareMessage',
+				// 	data:{
+				// 		_id,
+				// 		openid: res.openid,
+				// 		isLike: !isLike
+				// 	}
+				//   }).then(likeRes=>{
+				// 	  console.log('点赞函数调用成功')
+				//   })
+				// }).catch((err) => {
+				//   uni.showModal({
+				//     content: '还没登录呢，还没登录呢',
+				//     showCancel: false
+				//   })
+				// })
 			}
 		}
 		

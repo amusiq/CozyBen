@@ -5,7 +5,7 @@
 			<view class="author-card-inner">
 				<image class="author-card__avatar" src="../../static/blue.jpg" mode="aspectFill"/>
 				<text class="author-card__name">BEN ZHENG</text>
-				<view class="contact-btn">contact</view>
+				<view class="contact-btn" @click="onContact">contact</view>
 			</view>
 		</view>
 		<view class="author-detail">
@@ -77,6 +77,11 @@
 				  appId: 'wx255d1cc18d96aadf',
 				  path: 'pages/index/index'
 				})
+			},
+			onContact(){
+				uni.previewImage({
+					urls:["https://vkceyugu.cdn.bspapp.com/VKCEYUGU-cozyben/b24a5250-6e47-11ea-b997-9918a5dda011.jpg"]
+				});
 			}
 		}
 	}

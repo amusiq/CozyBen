@@ -116,8 +116,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
+/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 25));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};} //
 //
 //
 //
@@ -174,10 +173,65 @@ var _default =
         urls: images });
 
     },
-    onLike: function onLike() {
-      console.log('onLike', this.shareMsg);
-    } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+    onLike: function () {var _onLike = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var validateRes, _this$shareMsg, _id, isLike, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
+                  uniCloud.callFunction({
+                    name: 'validateToken',
+                    data: {
+                      token: uni.getStorageSync('token') // token最好不要每次从storage内取，本示例为了简化演示代码才这么写
+                    } }));case 2:validateRes = _context.sent;
+
+                console.log(validateRes, 'validateRes');if (!(
+                validateRes.result.status === 0)) {_context.next = 12;break;}_this$shareMsg =
+                this.shareMsg, _id = _this$shareMsg._id, isLike = _this$shareMsg.isLike;_context.next = 8;return (
+                  uniCloud.callFunction({
+                    name: 'likeShareMessage',
+                    data: {
+                      _id: _id,
+                      openid: validateRes.result.openid,
+                      isLike: !isLike } }));case 8:res = _context.sent;
+
+
+                if (res.result.status === 0) {
+                  uni.showModal({
+                    content: isLike ? '取消点赞成功' : '点赞成功',
+                    showCancel: false });
+
+                  this.$emit('onLike', { _id: this.shareMsg._id, isLike: !isLike });
+                }_context.next = 13;break;case 12:
+
+
+                uni.showModal({
+                  content: '还没登录呢，还没登录呢',
+                  showCancel: false });case 13:
+
+
+                console.log(validateRes, 'validateRes');
+                // uniCloud.callFunction({
+                //   name: 'validateToken',
+                //   data: {
+                //     token: uni.getStorageSync('token') // token最好不要每次从storage内取，本示例为了简化演示代码才这么写
+                //   }
+                // }).then((res) => {
+                //   console.log(res);
+                //   const { _id, isLike } = this.shareMsg;
+                //   uniCloud.callFunction({
+                //   	name:'likeShareMessage',
+                // 	data:{
+                // 		_id,
+                // 		openid: res.openid,
+                // 		isLike: !isLike
+                // 	}
+                //   }).then(likeRes=>{
+                // 	  console.log('点赞函数调用成功')
+                //   })
+                // }).catch((err) => {
+                //   uni.showModal({
+                //     content: '还没登录呢，还没登录呢',
+                //     showCancel: false
+                //   })
+                // })
+              case 14:case "end":return _context.stop();}}}, _callee, this);}));function onLike() {return _onLike.apply(this, arguments);}return onLike;}() } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 13)["default"]))
 
 /***/ }),
 
