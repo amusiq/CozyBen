@@ -223,6 +223,30 @@ function base64urlEscape(str) {
 
 var jwtSimple = jwt_1;
 
+const wxConfig = {
+  appid: 'wx3acde531639847bf', //微信小程序AppId
+  appSecret: 'a4296cbfd94020c21bcb3441b89129cb', //微信小程序AppSecret
+  adminOpenid: 'oqxlt5Ynaqh47aGfD_ExJ6Y5Oong', // 管理员自己的openid
+  mchid: '', // 商户号
+  partnerKey: '' // key为商户平台设置的密钥key
+};
+
+const passSecret = ''; //用于用户数据库密码加密的密钥，使用一个比较长的随机字符串即可
+
+//上面的字段非常重要！！！
+
+const tokenExp = 7200000;
+
+var constants = {
+  wxConfig,
+  passSecret,
+  tokenExp
+};
+
+const {
+  wxConfig: wxConfig$1,
+} = constants;
+
 const db = uniCloud.database();
 async function validateToken(token) {
   const userFromToken = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
@@ -250,6 +274,7 @@ async function validateToken(token) {
       status: 0,
       openid: userInfoDB.openid,
       userId: userInfoDB.userId,
+	  isAdmin: userInfoDB.openid === wxConfig$1.adminOpenid,
       msg: 'token验证成功'
     }
   }

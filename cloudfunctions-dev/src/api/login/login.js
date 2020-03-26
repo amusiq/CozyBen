@@ -35,7 +35,8 @@ async function login(event) {
   } = res.data
 
   let userInfo = {
-    openid
+    openid,
+	admin: wxConfig.adminOpenid === openid
   }
 
   let tokenSecret = crypto.randomBytes(16).toString('hex'),

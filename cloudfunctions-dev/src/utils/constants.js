@@ -1,6 +1,7 @@
 const wxConfig = {
   appid: 'wx3acde531639847bf', //微信小程序AppId
   appSecret: 'a4296cbfd94020c21bcb3441b89129cb', //微信小程序AppSecret
+  adminOpenid: 'oqxlt5Ynaqh47aGfD_ExJ6Y5Oong', // 管理员自己的openid
   mchid: '', // 商户号
   partnerKey: '' // key为商户平台设置的密钥key
 }

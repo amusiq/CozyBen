@@ -45,6 +45,16 @@ class Login {
 	    })
 	  })
 	}
+	
+	async checkToken(){
+		const token = uni.getStorageSync('token');
+		const validateRes = await uniCloud.callFunction({
+		  name: 'validateToken',
+		  data: { token }
+		});
+		validateRes.result.token = token;
+		return validateRes.result;
+	}
 }
 
 const login = new Login();

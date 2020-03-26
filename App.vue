@@ -1,15 +1,20 @@
 <script>
-	import loginUtil from '@/utils/login';
+	import { mapActions } from 'vuex';
 	export default {
+		globalData: {},
+		
 		onLaunch: function() {
-			loginUtil.login();
+			this.login()
 		},
 		onShow: function() {
 			console.log('App Show')
 		},
 		onHide: function() {
 			console.log('App Hide')
-		}
+		},
+		methods:{
+			...mapActions(['login'])
+		},
 	}
 </script>
 

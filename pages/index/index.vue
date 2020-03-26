@@ -1,16 +1,25 @@
 <template>
 	<view class="home-container">
 		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgData.list" :shareMsg="shareMsg" :key="shareMsgIdx" @onLike="onLike" />
-		<image class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" />
+		<image v-if="isAdmin" class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" />
 	</view>
 </template>
 
 <script>
 	import shareMessage from '@/components/share-message';
+	import { mapState } from 'vuex';
 	import dayjs from 'dayjs';
+	
 	export default {
 		components:{
 			'share-message':shareMessage
+		},
+		
+		computed:{
+			...mapState({
+				token:state=>state.userStore.token,
+				isAdmin:state=>state.userStore.isAdmin,
+			}),
 		},
 		
 		data() {
@@ -39,6 +48,8 @@
 			this.getShareMsg();
 		},
 		
+		
+		
 		// 分享
 		onShareAppMessage(res) {
 			const data = {
@@ -65,7 +76,7 @@
 				const validateRes = await uniCloud.callFunction({
 				  name: 'validateToken',
 				  data: {
-				    token: uni.getStorageSync('token') // token最好不要每次从storage内取，本示例为了简化演示代码才这么写
+				    token: this.token
 				  }
 				});
 				if(validateRes.result.status === 0){

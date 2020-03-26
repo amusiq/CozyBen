@@ -1,4 +1,7 @@
 const jwt = require('jwt-simple')
+const {
+  wxConfig,
+} = require('../utils/constants.js')
 
 const db = uniCloud.database()
 async function validateToken(token) {
@@ -27,6 +30,7 @@ async function validateToken(token) {
       status: 0,
       openid: userInfoDB.openid,
       userId: userInfoDB.userId,
+	  isAdmin: userInfoDB.openid === wxConfig.adminOpenid,
       msg: 'token验证成功'
     }
   }
