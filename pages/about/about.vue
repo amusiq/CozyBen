@@ -5,7 +5,7 @@
 			<view class="author-card-inner">
 				<image class="author-card__avatar" src="../../static/blue.jpg" mode="aspectFill"/>
 				<text class="author-card__name">BEN ZHENG</text>
-				<view class="contact-btn">contact</view>
+				<view class="contact-btn" @click="onContact">contact</view>
 			</view>
 		</view>
 		<view class="author-detail">
@@ -54,7 +54,7 @@
 				微信小程序
 			</view>
 			<view>
-				<view class="wxapp-item">
+				<view class="wxapp-item" @click="navToMP">
 					<image class="wxapp-item__headimg" src="../../static/images/distinct.png"/>
 					<text class="wxapp-item__text">卓正医疗</text>
 				</view>
@@ -69,6 +69,20 @@
 			return {
 				
 			};
+		},
+		
+		methods:{
+			navToMP(){
+				uni.navigateToMiniProgram({
+				  appId: 'wx255d1cc18d96aadf',
+				  path: 'pages/index/index'
+				})
+			},
+			onContact(){
+				uni.previewImage({
+					urls:["https://vkceyugu.cdn.bspapp.com/VKCEYUGU-cozyben/b24a5250-6e47-11ea-b997-9918a5dda011.jpg"]
+				});
+			}
 		}
 	}
 </script>

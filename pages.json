@@ -3,15 +3,10 @@
 		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "CozyBen"
+				"navigationBarTitleText": "CozyBen",
+				"enablePullDownRefresh": true
 			}
 		}
-	    ,{
-            "path" : "pages/diary/diary",
-            "style" : {
-				"navigationBarTitleText": "Diary"
-			}
-        }
         ,{
             "path" : "pages/about/about",
             "style" : {
@@ -36,11 +31,6 @@
 	        "selectedIconPath": "static/images/tabBar/home-active.png",
 	        "text": "Share"
 	    }, {
-	        "pagePath": "pages/diary/diary",
-	        "iconPath": "static/images/tabBar/diary.png",
-	        "selectedIconPath": "static/images/tabBar/diary-active.png",
-	        "text": "Diary"
-	    },{
 	        "pagePath": "pages/about/about",
 	        "iconPath": "static/images/tabBar/about.png",
 	        "selectedIconPath": "static/images/tabBar/about-active.png",

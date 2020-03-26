@@ -1,6 +1,6 @@
 {
     "name" : "CozyBen",
-    "appid" : "__UNI__59B85F0",
+    "appid" : "__UNI__317A314",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -61,7 +61,8 @@
             "es6" : true
         },
         "usingComponents" : true,
-        "permission" : {}
+        "permission" : {},
+        "navigateToMiniProgramAppIdList": ["wx255d1cc18d96aadf"]
     },
     "mp-alipay" : {
         "usingComponents" : true

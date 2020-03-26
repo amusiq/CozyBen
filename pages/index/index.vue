@@ -1,36 +1,101 @@
 <template>
 	<view class="home-container">
-		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgList" :shareMsg="shareMsg" :key="shareMsgIdx"/>
-		<image class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" />
+		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgData.list" :shareMsg="shareMsg" :key="shareMsgIdx" @onLike="onLike" />
+		<image v-if="isAdmin" class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" />
 	</view>
 </template>
 
 <script>
 	import shareMessage from '@/components/share-message';
+	import { mapState } from 'vuex';
 	import dayjs from 'dayjs';
+	
 	export default {
 		components:{
 			'share-message':shareMessage
 		},
 		
+		computed:{
+			...mapState({
+				token:state=>state.userStore.token,
+				isAdmin:state=>state.userStore.isAdmin,
+			}),
+		},
+		
 		data() {
 			return {
+				shareMsgData:{
+					list:[],
+					hasMore:true,
+					limit:5
+				},
 				shareMsgList: []
 			}
 		},
 		
 		onLoad() {
+			this.getShareMsg(true);
+		},
+		
+		// 下拉刷新
+		async onPullDownRefresh() {
+			await this.getShareMsg(true);
+			uni.stopPullDownRefresh();
+		},
+		
+		// 滑动底部加载
+		onReachBottom() {
 			this.getShareMsg();
+		},
+		
+		
+		
+		// 分享
+		onShareAppMessage(res) {
+			const data = {
+				title: '#"COZYBEN"#',
+				path: '/pages/index/index'
+			}
+			if (res.from === 'button') {// 来自页面内分享按钮
+				data.imageUrl = res.target.dataset.data.images[0];
+			}
+			return data
 		},
 		
 		methods: {
 			// 获取分享列表信息
-			getShareMsg(){
-				const db = wx.cloud.database();
-				db.collection('shareMessages').get({
-				  success:(res)=> {
-					this.shareMsgList = this.formatShareMsg(res.data);
+			async getShareMsg(fresh){
+				uni.showLoading({ title: '全力加载中...' });
+				if (fresh) this.shareMsgData = { hasMore: true, list: [], limit: 5 };
+				const { hasMore, list, limit } = this.shareMsgData;
+				if (!hasMore) return uni.hideLoading();
+				const data = {
+					start: list.length,
+					limit: limit
+				};
+				const validateRes = await uniCloud.callFunction({
+				  name: 'validateToken',
+				  data: {
+				    token: this.token
 				  }
+				});
+				if(validateRes.result.status === 0){
+					data.openid = validateRes.result.openid;
+				}
+				uniCloud.callFunction({
+				  name: 'getShareMessage',
+				  data
+				}).then((res) => {
+				  uni.hideLoading();
+				  this.shareMsgData.hasMore = res.result.hasMore;
+				  this.shareMsgData.list = list.concat(this.formatShareMsg(res.result.data));
+				}).catch((err) => {
+				  uni.hideLoading();
+				  uni.showModal({
+				    content: `查询失败，错误信息为：${err.message}`,
+				    showCancel: false
+				  });
+				  console.error(err);
 				});
 			},
 			// 处理分享列表信息
@@ -38,7 +103,7 @@
 				return shareMsgList.map(item=>{
 					return {
 						...item,
-						datetime:dayjs(item.dateTime).format('YYYY/M/D')
+						createTime:dayjs(item.createTime).format('YYYY/M/D')
 					}
 				});
 			},
@@ -46,6 +111,12 @@
 				uni.navigateTo({
 					url:'../editing/editing'
 				})
+			},
+			onLike(data){
+				const index = this.shareMsgData.list.findIndex(item => item._id === data._id);
+				if(index !== -1){
+					this.shareMsgData.list[index].isLike = data.isLike;
+				}
 			}
 		}
 	}

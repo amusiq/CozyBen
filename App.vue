@@ -1,18 +1,20 @@
 <script>
-	
+	import { mapActions } from 'vuex';
 	export default {
+		globalData: {},
+		
 		onLaunch: function() {
-			wx.cloud.init({
-			  env: 'cozy-ben-zwb910',
-			  traceUser:'true'
-			})
+			this.login()
 		},
 		onShow: function() {
 			console.log('App Show')
 		},
 		onHide: function() {
 			console.log('App Hide')
-		}
+		},
+		methods:{
+			...mapActions(['login'])
+		},
 	}
 </script>
 
