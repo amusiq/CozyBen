@@ -62,8 +62,8 @@
 				    token: uni.getStorageSync('token') // token最好不要每次从storage内取，本示例为了简化演示代码才这么写
 				  }
 				});
-					console.log(validateRes,'validateRes');
 				if(validateRes.result.status === 0){
+					this.$emit('onLike',{ _id: this.shareMsg._id, isLike: !isLike });
 					const { _id, isLike } = this.shareMsg;
 					const res = await uniCloud.callFunction({
 					  	name:'likeShareMessage',
@@ -73,14 +73,9 @@
 							isLike: !isLike
 						}
 					});
-					if(res.result.status === 0){
-						uni.showModal({
-						    content: isLike ? '取消点赞成功' : '点赞成功',
-						    showCancel: false
-						});
-						this.$emit('onLike',{ _id: this.shareMsg._id, isLike: !isLike });
+					if(res.result.status !== 0){
+						this.$emit('onLike',{ _id: this.shareMsg._id, isLike });
 					}
-					  
 				}else{
 					uni.showModal({
 					    content: '还没登录呢，还没登录呢',

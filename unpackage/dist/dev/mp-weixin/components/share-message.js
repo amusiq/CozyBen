@@ -178,10 +178,10 @@ var _default =
                     name: 'validateToken',
                     data: {
                       token: uni.getStorageSync('token') // token最好不要每次从storage内取，本示例为了简化演示代码才这么写
-                    } }));case 2:validateRes = _context.sent;
+                    } }));case 2:validateRes = _context.sent;if (!(
 
-                console.log(validateRes, 'validateRes');if (!(
-                validateRes.result.status === 0)) {_context.next = 12;break;}_this$shareMsg =
+                validateRes.result.status === 0)) {_context.next = 12;break;}
+                this.$emit('onLike', { _id: this.shareMsg._id, isLike: !isLike });_this$shareMsg =
                 this.shareMsg, _id = _this$shareMsg._id, isLike = _this$shareMsg.isLike;_context.next = 8;return (
                   uniCloud.callFunction({
                     name: 'likeShareMessage',
@@ -191,14 +191,9 @@ var _default =
                       isLike: !isLike } }));case 8:res = _context.sent;
 
 
-                if (res.result.status === 0) {
-                  uni.showModal({
-                    content: isLike ? '取消点赞成功' : '点赞成功',
-                    showCancel: false });
-
-                  this.$emit('onLike', { _id: this.shareMsg._id, isLike: !isLike });
+                if (res.result.status !== 0) {
+                  this.$emit('onLike', { _id: this.shareMsg._id, isLike: isLike });
                 }_context.next = 13;break;case 12:
-
 
                 uni.showModal({
                   content: '还没登录呢，还没登录呢',
