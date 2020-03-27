@@ -1,29 +1,41 @@
-const Fly = require("flyio/dist/npm/wx");
 
-const request = new Fly();
+import config from '@/constants/config';
+import store from '@/store/index.js';
 
-const errorPrompt = (err) => {
-  uni.showToast({
-    title: err.message || 'fetch data error.',
-    icon: 'none'
-  });
+// needLogin: 0 默认不需要；1 需要；2 需要但不强制
+
+const request = async({ name, data, needLogin }) => {
+	if(needLogin === 1 || needLogin === 2){
+		let { openid } = config.userInfo;
+		console.log(openid,'openid');
+		if(openid){ 
+			data.openid = openid; 
+		} else {
+			if(needLogin === 1){
+				return uni.showModal({
+					title:'还没登录呢',
+					content:'还没登录呢',
+					cancelText:'就不',
+					confirmText:'登录',
+					success(res){
+						if(res.confirm){
+							// 登录
+							store.dispatch('login');
+						}
+					}
+				});
+			}
+		}
+	}
+	try {
+		const res = await uniCloud.callFunction({ name, data });
+		return res.result;
+	} catch {
+		return {
+			status: 500,
+			msg: 'Network error'
+		}
+	}
 }
 
-request.interceptors.request.use((request) => {
-  uni.showNavigationBarLoading()
-  return request
-})
-
-request.interceptors.response.use((response, promise) => {
-  uni.hideNavigationBarLoading()
-  // if (!(response && response.data && response.data.res === 0)) {
-  //   errorPrompt(response)
-  // }
-  return promise.resolve(response.data)
-}, (err, promise) => {
-  uni.hideNavigationBarLoading()
-  errorPrompt(err)
-  return promise.reject(err)
-})
-
-export default request
+export default request;
