@@ -10,7 +10,6 @@
 	import request from '@/utils/request.js';
 	import { mapState, mapMutations } from 'vuex';
 	import dayjs from 'dayjs';
-	const app = getApp();
 	
 	export default {
 		components:{
@@ -36,8 +35,8 @@
 		},
 		
 		onLoad() {
+			console.log('xxxxxxxxxxxxxxxxxxxxxxxx')
 			this.getShareMsg(true);
-			console.log('xxxx')
 		},
 		
 		// 下拉刷新

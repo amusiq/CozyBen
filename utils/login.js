@@ -3,7 +3,6 @@ class Login {
 		uni.showLoading({ title: '登录中...' });
 		return new Promise((resolve, reject)=>{
 			this.getCode().then((code) => {
-			  console.log('code', code);
 			  return uniCloud.callFunction({
 			    name: 'login',
 			    data: {
@@ -18,7 +17,6 @@ class Login {
 			  }
 			  resolve(res.result);
 			  uni.setStorageSync('token', res.result.token)
-			  console.log('登录成功')
 			}).catch((err) => {
 			  console.log(err);
 			  uni.hideLoading()
