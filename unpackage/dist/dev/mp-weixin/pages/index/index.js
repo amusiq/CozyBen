@@ -203,10 +203,10 @@ var app = getApp();var _default =
   methods: {
     // 获取分享列表信息
     getShareMsg: function () {var _getShareMsg = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2(fresh) {var _this$shareMsgData, hasMore, list, limit, data, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:
-                uni.showLoading({ title: '全力加载中...' });
                 if (fresh) this.shareMsgData = { hasMore: true, list: [], limit: 5 };_this$shareMsgData =
                 this.shareMsgData, hasMore = _this$shareMsgData.hasMore, list = _this$shareMsgData.list, limit = _this$shareMsgData.limit;if (
-                hasMore) {_context2.next = 5;break;}return _context2.abrupt("return", uni.hideLoading());case 5:
+                hasMore) {_context2.next = 4;break;}return _context2.abrupt("return");case 4:
+                uni.showLoading({ title: '全力加载中...' });
                 data = {
                   start: list.length,
                   limit: limit };

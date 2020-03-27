@@ -68,10 +68,10 @@
 		methods: {
 			// 获取分享列表信息
 			async getShareMsg(fresh){
-				uni.showLoading({ title: '全力加载中...' });
 				if (fresh) this.shareMsgData = { hasMore: true, list: [], limit: 5 };
 				const { hasMore, list, limit } = this.shareMsgData;
-				if (!hasMore) return uni.hideLoading();
+				if (!hasMore) return;
+				uni.showLoading({ title: '全力加载中...' });
 				const data = {
 					start: list.length,
 					limit: limit
