@@ -5,7 +5,8 @@ const {
   tokenExp
 } = require('../../utils/constants.js')
 
-const db = uniCloud.database()
+const db = uniCloud.database();
+const dbCmd = db.command; 
 
 async function login(event) {
   let data = {
@@ -32,11 +33,13 @@ async function login(event) {
   const {
     openid,
     //session_key 暂不需要session_key
-  } = res.data
+  } = res.data;
+  
+
 
   let userInfo = {
     openid,
-	admin: wxConfig.adminOpenid === openid
+	isAdmin: wxConfig.adminOpenid === openid
   }
 
   let tokenSecret = crypto.randomBytes(16).toString('hex'),
@@ -60,11 +63,24 @@ async function login(event) {
       exp: Date.now() + tokenExp
     })
   }
+  
+  // 获取喜爱列表
+  let shareLikes = [];
+  const shareLikeCollection = db.collection('share-likes');
+  const shareLikeDB = await shareLikeCollection.where({ likes: openid }).field({ 'id': true }).get();
+  for(let i = 0; i < shareLikeDB.data.length; i++){
+	shareLikes.push(shareLikeDB.data[i].id);
+  }
 
   if (userUpdateResult.id || userUpdateResult.updated === 1) {
     return {
       status: 0,
-      token,
+	  userInfo:{
+		  token,
+		  openid,
+		  isAdmin:wxConfig.adminOpenid === openid,
+		  shareLikes
+	  },
       msg: '登录成功'
     }
   }

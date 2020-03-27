@@ -270,11 +270,21 @@ async function validateToken(token) {
 
 
   if (userInfoDB.exp > Date.now() && checkUser(userFromToken, userInfoDB)) {
+	// 获取喜爱列表
+	let shareLikes = [];
+	const shareLikeCollection = db.collection('share-likes');
+	const shareLikeDB = await shareLikeCollection.where({ likes: userInfoDB.openid }).field({ 'id': true }).get();
+	for(let i = 0; i < shareLikeDB.data.length; i++){
+		shareLikes.push(shareLikeDB.data[i].id);
+	}
     return {
       status: 0,
-      openid: userInfoDB.openid,
-      userId: userInfoDB.userId,
-	  isAdmin: userInfoDB.openid === wxConfig$1.adminOpenid,
+	  userInfo:{
+		  token,
+		  openid: userInfoDB.openid,
+		  isAdmin: userInfoDB.openid === wxConfig$1.adminOpenid,
+		  shareLikes
+	  },
       msg: 'token验证成功'
     }
   }

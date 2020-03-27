@@ -1,41 +1,40 @@
 import loginUtil from '@/utils/login';
+import config from '@/constants/config';
+import { request } from '@/utils/request';
 
 export default {
 	state: {
-		openid: '',
-		token: '',
-		isAdmin: false
+		isAdmin: false,
+		shareLikes:[],
 	},
 	getters: {},
 	mutations: {
-		setOpenid(state, openid) {
-			state.openid = openid
-		},
-		setToken(state, token) {
-			state.token = token
-		},
 		setIsAdmin(state,isAdmin){
 			state.isAdmin = isAdmin
+		},
+		setShareLikes(state,shareLikes){
+			state.shareLikes = shareLikes
 		}
 	},
 	actions: {
 		async login(context){
 			const checkRes = await loginUtil.checkToken();
-			console.log(checkRes,'checkRes')
 			if(checkRes.status === 0){
-				const { openid, token, isAdmin } = checkRes;
-				context.commit('setOpenid',openid);
-				context.commit('setToken',token);
-				context.commit('setIsAdmin',isAdmin);
+				const { userInfo } = checkRes;
+				config.userInfo = userInfo;
+				context.commit('setIsAdmin',userInfo.isAdmin);
+				context.commit('setShareLikes',userInfo.shareLikes);
 			} else {
-				await loginUtil.login();
-				const res = await loginUtil.checkToken();
-				if(checkRes.status === 0){
-					const { openid, token, isAdmin } = checkRes;
-					context.commit('setOpenid',openid);
-					context.commit('setToken',token);
-					context.commit('setIsAdmin',isAdmin);
-				}
+				loginUtil.login().then(res=>{
+					if(res.status === 0){
+						const { userInfo } = res;
+						config.userInfo = userInfo;
+						console.log(res,'login')
+						context.commit('setIsAdmin', userInfo.isAdmin);
+						context.commit('setShareLikes',userInfo.shareLikes);
+					}
+				});
+			
 			}
 		}
 	}
