@@ -35,7 +35,6 @@
 		},
 		
 		onLoad() {
-			console.log('xxxxxxxxxxxxxxxxxxxxxxxx')
 			this.getShareMsg(true);
 		},
 		

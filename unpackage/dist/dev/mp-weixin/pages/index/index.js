@@ -170,7 +170,6 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 33));functi
   },
 
   onLoad: function onLoad() {
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxx');
     this.getShareMsg(true);
   },
 
