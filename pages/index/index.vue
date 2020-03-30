@@ -1,7 +1,7 @@
 <template>
 	<view class="home-container">
 		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgData.list" :shareMsg="shareMsg" :openid="openid" :key="shareMsgIdx" :shareLikes="shareLikes" @onLike="onLike"  />
-		<image v-if="isAdmin" class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" />
+		<!-- <image v-if="isAdmin" class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" /> -->
 	</view>
 </template>
 

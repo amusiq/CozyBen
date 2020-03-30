@@ -13,12 +13,6 @@
 				"navigationBarTitleText": "About"
 			}
         }
-        ,{
-            "path" : "pages/editing/editing",
-            "style" : {
-				"navigationBarTitleText": "Editing"
-			}
-        }
     ],
 	"tabBar": {
 	    "color": "#A1A1A1",

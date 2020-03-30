@@ -1,8 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/about/about",
-    "pages/editing/editing"
+    "pages/about/about"
   ],
   "subPackages": [],
   "window": {
@@ -36,5 +35,5 @@
     "wx255d1cc18d96aadf"
   ],
   "usingComponents": {},
-  "sitemapLocation": "sitemap64.json"
+  "sitemapLocation": "sitemap6.json"
 }
