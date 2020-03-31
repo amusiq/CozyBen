@@ -6,10 +6,9 @@ import store from '@/store/index.js';
 
 const request = async({ name, data, needLogin }) => {
 	if(needLogin === 1 || needLogin === 2){
-		let { openid } = config.userInfo;
-		console.log(openid,'openid');
-		if(openid){ 
-			data.openid = openid; 
+		let { token } = config.userInfo;
+		if(token){ 
+			data.token = token; 
 		} else {
 			if(needLogin === 1){
 				return uni.showModal({

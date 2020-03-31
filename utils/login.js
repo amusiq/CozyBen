@@ -16,7 +16,6 @@ class Login {
 			    return Promise.reject(new Error(res.result.msg))
 			  }
 			  resolve(res.result);
-			  uni.setStorageSync('token', res.result.token)
 			}).catch((err) => {
 			  console.log(err);
 			  uni.hideLoading()
@@ -46,21 +45,6 @@ class Login {
 	      }
 	    })
 	  })
-	}
-	
-	async checkToken(){
-		const token = uni.getStorageSync('token');
-		if(!token){
-			return {
-				status: -1,
-				msg:'无token'
-			}
-		} 
-		const validateRes = await uniCloud.callFunction({
-		  name: 'validateToken',
-		  data: { token }
-		});
-		return validateRes.result;
 	}
 }
 

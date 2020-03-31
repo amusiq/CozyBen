@@ -170,7 +170,6 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 33));functi
   },
 
   onLoad: function onLoad() {
-    console.log('xxxxxxxxxxxxxxxxxxxxxxxx');
     this.getShareMsg(true);
   },
 
@@ -208,11 +207,9 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 33));functi
                 uni.showLoading({ title: '全力加载中...' });
                 data = {
                   start: list.length,
-                  limit: limit };
+                  limit: limit };_context2.next = 8;return (
 
-                console.log(this.openid, 'this.openid');
-                if (this.openid) {data.openid = this.openid;}_context2.next = 10;return (
-                  (0, _request.default)({ name: 'getShareMessage', data: data }));case 10:res = _context2.sent;
+                  (0, _request.default)({ name: 'getShareMessage', data: data }));case 8:res = _context2.sent;
                 uni.hideLoading();
                 if (res.data) {
                   this.shareMsgData.hasMore = res.hasMore;
@@ -222,7 +219,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 33));functi
                     content: "\u67E5\u8BE2\u5931\u8D25",
                     showCancel: false });
 
-                }case 13:case "end":return _context2.stop();}}}, _callee2, this);}));function getShareMsg(_x) {return _getShareMsg.apply(this, arguments);}return getShareMsg;}(),
+                }case 11:case "end":return _context2.stop();}}}, _callee2, this);}));function getShareMsg(_x) {return _getShareMsg.apply(this, arguments);}return getShareMsg;}(),
 
     // 处理分享列表信息
     formatShareMsg: function formatShareMsg(shareMsgList) {

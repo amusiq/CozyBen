@@ -1,6 +1,13 @@
+const {
+  validateToken
+} = require('../../utils/validateToken.js')
+
 const db = uniCloud.database()
 async function likeShareMessage(event) {
-	const { _id, openid, isLike } = event;
+	const { _id, token, isLike } = event;
+	const checkRes = await validateToken(token);
+	if(checkRes.status !== 0) return checkRes;
+	const { openid } = checkRes;
 	const shareCollection = db.collection('share-message');
 	const collection = db.collection('share-likes');
 	const dbCmd = db.command; // 取指令

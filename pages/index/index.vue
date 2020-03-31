@@ -1,6 +1,6 @@
 <template>
 	<view class="home-container">
-		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgData.list" :shareMsg="shareMsg" :openid="openid" :key="shareMsgIdx" :shareLikes="shareLikes" @onLike="onLike"  />
+		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgData.list" :shareMsg="shareMsg" :key="shareMsgIdx" :shareLikes="shareLikes" @onLike="onLike"  />
 		<image v-if="isAdmin" class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" />
 	</view>
 </template>
@@ -35,7 +35,6 @@
 		},
 		
 		onLoad() {
-			console.log('xxxxxxxxxxxxxxxxxxxxxxxx')
 			this.getShareMsg(true);
 		},
 		
@@ -75,8 +74,6 @@
 					start: list.length,
 					limit: limit
 				};
-				console.log(this.openid,'this.openid')
-				if(this.openid){ data.openid = this.openid; } 
 				const res = await request({ name: 'getShareMessage', data });
 				uni.hideLoading();
 				if(res.data){

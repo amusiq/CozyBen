@@ -32,7 +32,6 @@
 	export default {
 		props:{
 			shareMsg: Object,
-			openid: String,
 			shareLikes: Array
 		},
 		

@@ -18,24 +18,22 @@ export default {
 	},
 	actions: {
 		async login(context){
-			const checkRes = await loginUtil.checkToken();
-			if(checkRes.status === 0){
-				const { userInfo } = checkRes;
-				config.userInfo = userInfo;
-				context.commit('setIsAdmin',userInfo.isAdmin);
-				context.commit('setShareLikes',userInfo.shareLikes);
-			} else {
-				loginUtil.login().then(res=>{
-					if(res.status === 0){
-						const { userInfo } = res;
-						config.userInfo = userInfo;
-						console.log(res,'login')
-						context.commit('setIsAdmin', userInfo.isAdmin);
-						context.commit('setShareLikes',userInfo.shareLikes);
-					}
-				});
-			
-			}
+			const USER_INFO = uni.getStorageSync('USER_INFO');
+			if(USER_INFO){
+				config.userInfo = USER_INFO;
+				context.commit('setIsAdmin', USER_INFO.isAdmin);
+				context.commit('setShareLikes',USER_INFO.shareLikes);
+				return;
+			};
+			loginUtil.login().then(res=>{
+				if(res.status === 0){
+					const { userInfo } = res;
+					config.userInfo = userInfo;
+					uni.setStorageSync('USER_INFO',userInfo);
+					context.commit('setIsAdmin', userInfo.isAdmin);
+					context.commit('setShareLikes',userInfo.shareLikes);
+				}
+			});
 		}
 	}
 }

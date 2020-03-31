@@ -150,7 +150,6 @@ var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js
 {
   props: {
     shareMsg: Object,
-    openid: String,
     shareLikes: Array },
 
 

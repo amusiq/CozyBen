@@ -249,6 +249,12 @@ const {
 
 const db = uniCloud.database();
 async function validateToken(token) {
+  if(!token){
+	  return {
+	  	  status: -2,
+	  	  msg: '无token'
+	  }
+  }
   const userFromToken = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
   const userInDB = await db.collection('user').where(userFromToken).get();
   if (userInDB.data.length !== 1) {

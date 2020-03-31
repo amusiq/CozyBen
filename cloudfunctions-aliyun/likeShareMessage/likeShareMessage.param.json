@@ -1,5 +1,5 @@
 // 本文件中的json内容将在云函数【上传并运行】时作为参数传给云函数。
 {	"_id":"5e79e1c32fe447004d496b03",
-	"openid":"oqxlt5Ynaqh47aGfD_ExJ6Y5Oong",
+	"token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJvcGVuaWQiOiJvcXhsdDVZbmFxaDQ3YUdmRF9FeEo2WTVPb25nIiwiaXNBZG1pbiI6dHJ1ZX0.SUTjDu5drZr6LO532YPWuHCfXIegmX1Gl0L7L0gvXPc",
 	"isLike":true
 }
