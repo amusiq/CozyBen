@@ -28,6 +28,7 @@
 
 <script>
 	import request from '@/utils/request.js';
+	import functionTool from '@/utils/functionTool.js';
 	
 	export default {
 		props:{
@@ -61,7 +62,7 @@
 					urls: images
 				});
 			},
-			async onLike(){
+			onLike:functionTool.throttle(async function(){
 				const isLike = this.isLike;
 				this.$emit('onLike',{ _id: this.shareMsg._id, isLike: !isLike });
 				const { _id } = this.shareMsg;
@@ -73,11 +74,11 @@
 					},
 					needLogin: 1
 				});
-				console.log(res,'res')
 				if(!res || res.status !== 0){
 					this.$emit('onLike',{ _id: this.shareMsg._id, isLike:isLike });
-				}
-			}
+				} else {
+					this.$emit('updateShareLike');
+			} }, 400),
 		}
 		
 	}

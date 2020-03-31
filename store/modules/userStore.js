@@ -13,7 +13,9 @@ export default {
 			state.isAdmin = isAdmin
 		},
 		setShareLikes(state,shareLikes){
-			state.shareLikes = shareLikes
+			state.shareLikes = shareLikes;
+			console.log(shareLikes,'shareLikes');
+			uni.setStorageSync('USER_INFO',{ ...config.userInfo,shareLikes });
 		}
 	},
 	actions: {

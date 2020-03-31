@@ -320,7 +320,6 @@ async function login(event) {
       status: 0,
 	  userInfo:{
 		  token,
-		  openid,
 		  isAdmin:wxConfig$1.adminOpenid === openid,
 		  shareLikes
 	  },

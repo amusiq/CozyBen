@@ -322,7 +322,7 @@ async function likeShareMessage(event) {
 	const { _id, token, isLike } = event;
 	const checkRes = await validateToken$1(token);
 	if(checkRes.status !== 0) return checkRes;
-	const { openid } = checkRes;
+	const { openid } = checkRes.userInfo;
 	const shareCollection = db$1.collection('share-message');
 	const collection = db$1.collection('share-likes');
 	const dbCmd = db$1.command; // 取指令
@@ -335,6 +335,7 @@ async function likeShareMessage(event) {
 		if(likeRes.id || likeRes.updated === 1){
 			return {
 				status: 0,
+				checkRes,
 				msg: '点赞成功'
 			}
 		} else {

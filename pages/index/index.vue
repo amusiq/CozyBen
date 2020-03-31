@@ -1,6 +1,6 @@
 <template>
 	<view class="home-container">
-		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgData.list" :shareMsg="shareMsg" :key="shareMsgIdx" :shareLikes="shareLikes" @onLike="onLike"  />
+		<share-message v-for="(shareMsg,shareMsgIdx) in shareMsgData.list" :shareMsg="shareMsg" :key="shareMsgIdx" :shareLikes="shareLikes" @onLike="onLike" @updateShareLike="updateShareLike" />
 		<image v-if="isAdmin" class="add-btn" @click="goAdd" src="../../static/images/add.png" mode="widthFix" />
 	</view>
 </template>
@@ -8,8 +8,9 @@
 <script>
 	import shareMessage from '@/components/share-message';
 	import request from '@/utils/request.js';
-	import { mapState, mapMutations } from 'vuex';
+	import { mapState } from 'vuex';
 	import dayjs from 'dayjs';
+	import config from '@/constants/config.js';
 	
 	export default {
 		components:{
@@ -103,10 +104,12 @@
 			onLike(data){
 				if(data.isLike){
 					this.shareLikes.push(data._id);
-					// this.setShareLikes()
 				} else {
-					this.shareLikes.splice(this.shareLikes.findIndex(item => item === data._id), 1)
+					this.shareLikes.splice(this.shareLikes.findIndex(item => item === data._id), 1);
 				}
+			},
+			updateShareLike(){
+				uni.setStorageSync('USER_INFO',{ ...config.userInfo, shareLikes:this.shareLikes });
 			}
 		}
 	}
