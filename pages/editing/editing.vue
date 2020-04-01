@@ -17,6 +17,8 @@
 
 <script>
 	import imageUpload from '@/components/image-upload.vue';
+	import request from '@/utils/request.js';
+	
 	export default {
 		components:{
 			imageUpload
@@ -39,43 +41,40 @@
 			onInputContent:function(e){
 				setTimeout(() => { this.content = e.detail.value }, 0);
 			},
-			sendMsg:function(){
+			sendMsg:async function(){
 				if(this.imageData.length < 1){
 					return uni.showToast({
 						title:'请至少上传一张照片',
 						icon:'none'
 					})
 				}
-				uni.showLoading({
-				  title: '处理中...'
-				});
+				uni.showLoading({ title: '处理中...' });
 				const data ={
 					title: this.title,
 					content:this.content,
 					images:this.imageData,
 					createTime: Date.now()
 				}
-				uniCloud.callFunction({
+				const res = await request({
 				  name: 'addShareMessage',
-				  data
-				}).then((res) => {
-				  uni.hideLoading()
-				  uni.showModal({
-				    content: `发送成功`,
-				    showCancel: false,
-					success:(res)=>{
-						if(res.confirm) uni.navigateBack()
-					}
-				  })
-				  console.log(res)
-				}).catch((err) => {
-				  uni.hideLoading()
-				  uni.showModal({
-				    content: `添加数据失败，错误信息为：${err.message}`,
-				    showCancel: false
-				  })
-				  console.error(err)
-				})
+				  data,
+				  needLogin: 1
+				});
+				uni.hideLoading();
+				if(res.status === 0){
+					uni.showModal({
+					  content: `发送成功`,
+					  showCancel: false,
+						success:(modalRes)=>{
+							if(modalRes.confirm) uni.navigateBack()
+						}
+					})
+				} else {
+					uni.showModal({
+					  content: `添加数据失败，错误信息为：${res.msg}`,
+					  showCancel: false
+					})
+				}
 			}
 		}
 	}

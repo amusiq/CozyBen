@@ -131,7 +131,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni, uniCloud) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var imageUpload = function imageUpload() {Promise.all(/*! require.ensure | components/image-upload */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/image-upload")]).then((function () {return resolve(__webpack_require__(/*! @/components/image-upload.vue */ 58));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 18));
 
 
 
@@ -149,6 +149,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+var _request = _interopRequireDefault(__webpack_require__(/*! @/utils/request.js */ 24));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}var imageUpload = function imageUpload() {__webpack_require__.e(/*! require.ensure | components/image-upload */ "components/image-upload").then((function () {return resolve(__webpack_require__(/*! @/components/image-upload.vue */ 59));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   components: {
@@ -172,45 +174,41 @@ __webpack_require__.r(__webpack_exports__);
     onInputContent: function onInputContent(e) {var _this2 = this;
       setTimeout(function () {_this2.content = e.detail.value;}, 0);
     },
-    sendMsg: function sendMsg() {
-      if (this.imageData.length < 1) {
-        return uni.showToast({
-          title: '请至少上传一张照片',
-          icon: 'none' });
+    sendMsg: function () {var _sendMsg = _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var data, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:if (!(
+                this.imageData.length < 1)) {_context.next = 2;break;}return _context.abrupt("return",
+                uni.showToast({
+                  title: '请至少上传一张照片',
+                  icon: 'none' }));case 2:
 
-      }
-      uni.showLoading({
-        title: '处理中...' });
 
-      var data = {
-        title: this.title,
-        content: this.content,
-        images: this.imageData,
-        createTime: Date.now() };
+                uni.showLoading({ title: '处理中...' });
+                data = {
+                  title: this.title,
+                  content: this.content,
+                  images: this.imageData,
+                  createTime: Date.now() };_context.next = 6;return (
 
-      uniCloud.callFunction({
-        name: 'addShareMessage',
-        data: data }).
-      then(function (res) {
-        uni.hideLoading();
-        uni.showModal({
-          content: "\u53D1\u9001\u6210\u529F",
-          showCancel: false,
-          success: function success(res) {
-            if (res.confirm) uni.navigateBack();
-          } });
+                  (0, _request.default)({
+                    name: 'addShareMessage',
+                    data: data,
+                    needLogin: 1 }));case 6:res = _context.sent;
 
-        console.log(res);
-      }).catch(function (err) {
-        uni.hideLoading();
-        uni.showModal({
-          content: "\u6DFB\u52A0\u6570\u636E\u5931\u8D25\uFF0C\u9519\u8BEF\u4FE1\u606F\u4E3A\uFF1A".concat(err.message),
-          showCancel: false });
+                uni.hideLoading();
+                if (res.status === 0) {
+                  uni.showModal({
+                    content: "\u53D1\u9001\u6210\u529F",
+                    showCancel: false,
+                    success: function success(modalRes) {
+                      if (modalRes.confirm) uni.navigateBack();
+                    } });
 
-        console.error(err);
-      });
-    } } };exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js */ 22)["default"]))
+                } else {
+                  uni.showModal({
+                    content: "\u6DFB\u52A0\u6570\u636E\u5931\u8D25\uFF0C\u9519\u8BEF\u4FE1\u606F\u4E3A\uFF1A".concat(res.msg),
+                    showCancel: false });
+
+                }case 9:case "end":return _context.stop();}}}, _callee, this);}));function sendMsg() {return _sendMsg.apply(this, arguments);}return sendMsg;}() } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

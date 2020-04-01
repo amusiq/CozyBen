@@ -327,7 +327,19 @@ async function addShareMessage(event) {
 	};
 	const collection = db$1.collection('share-message');
 	const res = await collection.add(event);
-	return res
+	if(res.id){
+		return {
+			status:0,
+			msg:'添加成功',
+			data:res
+		}
+	} else {
+		return {
+			status:1,
+			msg:'添加失败',
+			data:res
+		}
+	}
 }
 
 var main = addShareMessage;

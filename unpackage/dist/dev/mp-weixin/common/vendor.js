@@ -10616,12 +10616,13 @@ var request = /*#__PURE__*/function () {var _ref2 = _asyncToGenerator( /*#__PURE
 
 
 
-              uniCloud.callFunction({ name: name, data: data }));case 12:res = _context.sent;return _context.abrupt("return",
-            res.result);case 16:_context.prev = 16;_context.t0 = _context["catch"](9);return _context.abrupt("return",
+              uniCloud.callFunction({ name: name, data: data }));case 12:res = _context.sent;
+            console.log(res, 'res');return _context.abrupt("return",
+            res.result);case 17:_context.prev = 17;_context.t0 = _context["catch"](9);return _context.abrupt("return",
 
             {
               status: 500,
-              msg: 'Network error' });case 19:case "end":return _context.stop();}}}, _callee, null, [[9, 16]]);}));return function request(_x) {return _ref2.apply(this, arguments);};}();var _default =
+              msg: 'Network error' });case 20:case "end":return _context.stop();}}}, _callee, null, [[9, 17]]);}));return function request(_x) {return _ref2.apply(this, arguments);};}();var _default =
 
 
 
@@ -10691,22 +10692,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /* 53 */,
 /* 54 */,
 /* 55 */,
-/* 56 */,
-/* 57 */,
-/* 58 */,
-/* 59 */,
-/* 60 */,
-/* 61 */,
-/* 62 */,
-/* 63 */,
-/* 64 */,
-/* 65 */,
-/* 66 */,
-/* 67 */,
-/* 68 */,
-/* 69 */,
-/* 70 */,
-/* 71 */
+/* 56 */
 /*!**********************************************************!*\
   !*** E:/develop/小程序/cozyben-weapp/utils/functionTool.js ***!
   \**********************************************************/

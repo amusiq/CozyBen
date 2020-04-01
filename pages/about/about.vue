@@ -13,16 +13,12 @@
 				个人介绍
 			</view>
 			<view class="author-detail__subTitle">
-				求职意向
+				工作
 			</view>
 			<view class="author-detail__info">
 				<view>
-					<text class="label">期望岗位：</text>
+					<text class="label">职业：</text>
 					<text class="content">前端工程师</text>
-				</view>
-				<view>
-					<text class="label">期望薪资：</text>
-					<text class="content">面议</text>
 				</view>
 			</view>
 			<view class="author-detail__subTitle">

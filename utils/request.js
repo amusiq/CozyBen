@@ -28,6 +28,7 @@ const request = async({ name, data, needLogin }) => {
 	}
 	try {
 		const res = await uniCloud.callFunction({ name, data });
+		console.log(res,'res')
 		return res.result;
 	} catch {
 		return {
