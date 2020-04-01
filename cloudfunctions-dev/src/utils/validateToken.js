@@ -16,7 +16,7 @@ async function validateToken(token) {
   if (userInDB.data.length !== 1) {
     return {
       status: -1,
-      msg: '查无此人'
+      msg: '根据token查无此人'
     }
   }
   const userInfoDB = userInDB.data[0]

@@ -11,6 +11,13 @@ async function getShareMessage(event) {
 	const hasMore = (start+1+limit) < countResult.total;
 	let res = await collection.orderBy('createTime','desc').skip(start).limit(limit).get();
 	res.hasMore = hasMore;
+	if(res.data){
+		res.status = 0;
+		res.msg = '查询成功';
+	} else {
+		res.status = -1;
+		res.msg = '查询失败';
+	}
 	return res;
 }
 

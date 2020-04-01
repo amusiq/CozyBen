@@ -29,6 +29,21 @@ const request = async({ name, data, needLogin }) => {
 	try {
 		const res = await uniCloud.callFunction({ name, data });
 		console.log(res,'res')
+		if(res.result.status !== 0 && res.result.msg.indexOf('token')){
+			config.userInfo.expire = true;
+			return uni.showModal({
+				title:'登录态失效',
+				content:'登录态失效',
+				cancelText:'就不',
+				confirmText:'登录',
+				success(res){
+					if(res.confirm){
+						// 登录
+						store.dispatch('login');
+					}
+				}
+			});
+		}
 		return res.result;
 	} catch {
 		return {

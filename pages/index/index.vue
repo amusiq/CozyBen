@@ -76,15 +76,11 @@
 					limit: limit
 				};
 				const res = await request({ name: 'getShareMessage', data });
+				console.log(res,'index res')
 				uni.hideLoading();
-				if(res.data){
+				if(res.status === 0){
 					this.shareMsgData.hasMore = res.hasMore;
 					this.shareMsgData.list = list.concat(this.formatShareMsg(res.data));
-				} else {
-					uni.showModal({
-					  content: `查询失败`,
-					  showCancel: false
-					});
 				}
 			},
 			// 处理分享列表信息

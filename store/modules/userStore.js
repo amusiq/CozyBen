@@ -14,14 +14,12 @@ export default {
 		},
 		setShareLikes(state,shareLikes){
 			state.shareLikes = shareLikes;
-			console.log(shareLikes,'shareLikes');
-			uni.setStorageSync('USER_INFO',{ ...config.userInfo,shareLikes });
 		}
 	},
 	actions: {
 		async login(context){
 			const USER_INFO = uni.getStorageSync('USER_INFO');
-			if(USER_INFO){
+			if(USER_INFO && !config.userInfo.expire){
 				config.userInfo = USER_INFO;
 				context.commit('setIsAdmin', USER_INFO.isAdmin);
 				context.commit('setShareLikes',USER_INFO.shareLikes);
@@ -30,7 +28,7 @@ export default {
 			loginUtil.login().then(res=>{
 				if(res.status === 0){
 					const { userInfo } = res;
-					config.userInfo = userInfo;
+					config.userInfo = { ...userInfo, expire:false };
 					uni.setStorageSync('USER_INFO',userInfo);
 					context.commit('setIsAdmin', userInfo.isAdmin);
 					context.commit('setShareLikes',userInfo.shareLikes);

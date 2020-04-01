@@ -209,16 +209,12 @@ var _config = _interopRequireDefault(__webpack_require__(/*! @/constants/config.
                   limit: limit };_context2.next = 8;return (
 
                   (0, _request.default)({ name: 'getShareMessage', data: data }));case 8:res = _context2.sent;
+                console.log(res, 'index res');
                 uni.hideLoading();
-                if (res.data) {
+                if (res.status === 0) {
                   this.shareMsgData.hasMore = res.hasMore;
                   this.shareMsgData.list = list.concat(this.formatShareMsg(res.data));
-                } else {
-                  uni.showModal({
-                    content: "\u67E5\u8BE2\u5931\u8D25",
-                    showCancel: false });
-
-                }case 11:case "end":return _context2.stop();}}}, _callee2, this);}));function getShareMsg(_x) {return _getShareMsg.apply(this, arguments);}return getShareMsg;}(),
+                }case 12:case "end":return _context2.stop();}}}, _callee2, this);}));function getShareMsg(_x) {return _getShareMsg.apply(this, arguments);}return getShareMsg;}(),
 
     // 处理分享列表信息
     formatShareMsg: function formatShareMsg(shareMsgList) {
