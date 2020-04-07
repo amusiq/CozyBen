@@ -273,34 +273,54 @@ async function validateToken(token) {
       return userFromToken[item] === userInfoDB[item] && userFromToken[item] === userInfoDecode[item]
     })
   }
+  
+   if (checkUser(userFromToken, userInfoDB)) {
+  	// 获取喜爱列表
+  	let shareLikes = [];
+  	const shareLikeCollection = db.collection('share-likes');
+  	const shareLikeDB = await shareLikeCollection.where({ likes: userInfoDB.openid }).field({ 'id': true }).get();
+  	for(let i = 0; i < shareLikeDB.data.length; i++){
+  		shareLikes.push(shareLikeDB.data[i].id);
+  	}
+     return {
+       status: 0,
+  	  userInfo:{
+  		  token,
+  		  openid: userInfoDB.openid,
+  		  isAdmin: userInfoDB.openid === wxConfig$1.adminOpenid,
+  		  shareLikes
+  	  },
+       msg: 'token验证成功'
+     }
+   }
 
 
-  if (userInfoDB.exp > Date.now() && checkUser(userFromToken, userInfoDB)) {
-	// 获取喜爱列表
-	let shareLikes = [];
-	const shareLikeCollection = db.collection('share-likes');
-	const shareLikeDB = await shareLikeCollection.where({ likes: userInfoDB.openid }).field({ 'id': true }).get();
-	for(let i = 0; i < shareLikeDB.data.length; i++){
-		shareLikes.push(shareLikeDB.data[i].id);
-	}
-    return {
-      status: 0,
-	  userInfo:{
-		  token,
-		  openid: userInfoDB.openid,
-		  isAdmin: userInfoDB.openid === wxConfig$1.adminOpenid,
-		  shareLikes
-	  },
-      msg: 'token验证成功'
-    }
-  }
+ //  if (userInfoDB.exp > Date.now() && checkUser(userFromToken, userInfoDB)) {
+	// // 获取喜爱列表
+	// let shareLikes = [];
+	// const shareLikeCollection = db.collection('share-likes');
+	// const shareLikeDB = await shareLikeCollection.where({ likes: userInfoDB.openid }).field({ 'id': true }).get();
+	// for(let i = 0; i < shareLikeDB.data.length; i++){
+	// 	shareLikes.push(shareLikeDB.data[i].id);
+	// }
+ //    return {
+ //      status: 0,
+	//   userInfo:{
+	// 	  token,
+	// 	  openid: userInfoDB.openid,
+	// 	  isAdmin: userInfoDB.openid === wxConfig.adminOpenid,
+	// 	  shareLikes
+	//   },
+ //      msg: 'token验证成功'
+ //    }
+ //  }
 
-  if (userInfoDB.exp < Date.now()) {
-    return {
-      status: -3,
-      msg: 'token已失效'
-    }
-  }
+  // if (userInfoDB.exp < Date.now()) {
+  //   return {
+  //     status: -3,
+  //     msg: 'token已失效'
+  //   }
+  // }
 
   return {
     status: -2,
